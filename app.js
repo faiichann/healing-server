@@ -24,8 +24,15 @@ app.get('/results', (req, res) => {
   })
 })
 
-app.get('/results/:id', (req, res) => {
-    res.json(result.find(result => result.id === req.params.id))
+app.get('/results/:id', async (req, res) => {
+  try {
+		const cardReult = await cardModel.findOne({ card_id: req.params.id })
+    res.status(200).json({cardReult})
+	} catch {
+		res.status(404)
+		res.send({ error: "card not found" })
+	}
+    
 })
 
 app.post('/results', async (req, res) => {
@@ -41,16 +48,26 @@ app.post('/results', async (req, res) => {
   })
 })
 
-app.put('/results/:id', (req, res) => {
-    const updateIndex = result.findIndex(result => result.id === req.params.id)
-    res.json(Object.assign(result[updateIndex], req.body))
+app.patch('/results/:id', async (req, res) => {
+  cardModel.findOneAndUpdate({ card_id: req.params.id }, req.body, {new: true}).then((result) => {
+    if (!result) {
+        return res.status(404).send({ error: "card not found" });
+    }
+    res.send(result);
+}).catch((error) => {
+    res.status(500).send(error);
+})
   })
 
   
-app.delete('/results/:id', (req, res) => {
-    const deletedIndex = books.findIndex(result => result.id === req.params.id)
-    books.splice(deletedIndex, 1)
-    res.status(204).send()
+app.delete('/results/:id', async (req, res) => {
+  try {
+		await cardModel.deleteOne({ card_id: req.params.id })
+		res.status(204).send()
+	} catch {
+		res.status(404)
+		res.send({ error: "card not found" })
+	}
  })
 
 app.listen(PORT, () => {
