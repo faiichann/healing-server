@@ -1,0 +1,36 @@
+[
+    {
+      "id": "1",
+      "username": "faiichann",
+      "rating": 5,
+      "type": "money",
+      "goal": "อยากมีเงิน",
+      "nft_card": {
+          "emoji": "😉",
+          "bg_color": "red",
+          "caption": "จะต้องทำให้สำเร็จให้ได้เลย"
+      },
+      "qoutes": {
+          "aurthur": "nameA",
+          "qoute": "fighting naja",
+          "img": "https://api.thecatapi.com/v1/images/search"
+      }
+    },
+    {
+        "id": "2",
+        "username": "Unknow",
+        "rating": 3,
+        "type": "work",
+        "goal": "อยากลาออก",
+        "nft_card": {
+            "emoji": "🤮",
+            "bg_color": "blue",
+            "caption": "เอาละต้องทำให้ได้แล้ว"
+        },
+        "qoutes": {
+            "aurthur": "nameฺ",
+            "qoute": "Work hard for what",
+            "img": "https://api.thecatapi.com/v1/images/search"
+        }
+    }
+  ]
